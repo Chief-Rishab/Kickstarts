@@ -36,6 +36,10 @@ const int N=5e5;
 /*Coding Begins here**/
 ll n,t; main()
 {
+	// Maintaining two different arrays with closest bin on the left at each index
+	   //and closest bin on the right at each index using prefix and suffix arrays
+	   //then compare the min distance to travel at each index
+	   
 	cin>>t;
 	ll x=1;
 	string s;
@@ -45,9 +49,7 @@ ll n,t; main()
 	   cin>>n;
 	   cin>>s;
 	   ll ans=0;
-
-       
-
+	   //n=s.size();
 	   ll temp=INT_MIN;
 	   for(ll i=0;i<n;i++)
 	   {
