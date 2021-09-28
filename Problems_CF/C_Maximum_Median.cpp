@@ -32,39 +32,46 @@ ll logtwo(ll n){ if(n==1) return 0; return logtwo(n/2)+1;}
 ll isprime(ll n ){for(ll c1 = 2; c1*c1 <= n ;c1++){    if(n%c1 == 0){return 0;}} return 1;}
 ll twop(ll n) { ll x=0; while(n%2==0) {n/=2; x++;} return x;}
 
-const int N=5e5;
-/*Coding Begins here**/
-ll n,t; main()
+constexpr int N=2e5+5;
+
+ll n,k,arr[N];
+
+bool check(ll x)
 {
-	cin>>t;
-	ll x=1;
-	string s;
-	vector<int> left(N),right(N);
-	while(t--)
-	{
-	   cin>>n;
-	   cin>>s;
-	   ll ans=0;
-	   ll temp=INT_MIN;
-	   for(ll i=0;i<n;i++)
-	   {
-	   	if(s[i]=='1') temp=i;
-	    left[i]=temp;
-	   }
-	   temp=INT_MAX;
-	   for(ll j=n-1;j>=0;j--)
-	   {
-         if(s[j]=='1') temp=j;
-         right[j]=temp;
-	   }
-       for(ll i=0;i<n;i++)
-       {
-       	//  trace2(left[i],right[i]);
-         if(s[i]!='1')
-         	ans+= min(i-left[i],right[i]-i);
-       }
-       cout<<"Case #"<<x<<": "<<ans<<"\n";
-	   x++;
-	 }
-	return 0;
+    ll sum=0;
+    for(ll i=n/2;i<n;i++)
+    {
+        if(arr[i]<x)
+          sum+=(x-arr[i]);
+        else
+          break;
+    }
+    return sum<=k;
 }
+
+void ceil_search(ll s,ll e, ll &ans)
+{
+    if(s>e) return;
+    ll mid=(s+e)/2;  //checking if this can be ans
+    if(check(mid))
+    {
+        ans=max(ans,mid);
+        ceil_search(mid+1,e,ans);
+    }
+    else
+        ceil_search(s,mid-1,ans);
+  return;
+}
+int32_t main()
+{
+   IOS;
+   cin>>n>>k;
+   inp(arr,n);
+   sort(arr,arr+n);
+   ll s=1;
+   ll e=2e9;
+   ll ans=0;
+   ceil_search(s,e,ans);
+   cout<<ans;
+}
+

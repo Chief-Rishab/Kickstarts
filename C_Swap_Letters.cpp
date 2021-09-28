@@ -1,3 +1,4 @@
+//https://codeforces.com/contest/1215/problem/C
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
@@ -32,39 +33,31 @@ ll logtwo(ll n){ if(n==1) return 0; return logtwo(n/2)+1;}
 ll isprime(ll n ){for(ll c1 = 2; c1*c1 <= n ;c1++){    if(n%c1 == 0){return 0;}} return 1;}
 ll twop(ll n) { ll x=0; while(n%2==0) {n/=2; x++;} return x;}
 
-const int N=5e5;
-/*Coding Begins here**/
-ll n,t; main()
+ll t,n;main()
 {
-	cin>>t;
-	ll x=1;
-	string s;
-	vector<int> left(N),right(N);
-	while(t--)
-	{
-	   cin>>n;
-	   cin>>s;
-	   ll ans=0;
-	   ll temp=INT_MIN;
-	   for(ll i=0;i<n;i++)
-	   {
-	   	if(s[i]=='1') temp=i;
-	    left[i]=temp;
-	   }
-	   temp=INT_MAX;
-	   for(ll j=n-1;j>=0;j--)
-	   {
-         if(s[j]=='1') temp=j;
-         right[j]=temp;
-	   }
-       for(ll i=0;i<n;i++)
-       {
-       	//  trace2(left[i],right[i]);
-         if(s[i]!='1')
-         	ans+= min(i-left[i],right[i]-i);
-       }
-       cout<<"Case #"<<x<<": "<<ans<<"\n";
-	   x++;
-	 }
-	return 0;
+    cin>>n;
+    string a,b;
+    cin>>a>>b;
+    ll count=0;
+    vector <ll> ar1,ar2;
+    for(ll i=0;i<sz(a);i++)
+    {
+        if(a[i]!=b[i])
+          {
+              count++;
+              if(a[i]=='a') ar1.pb(i+1);
+              else ar2.pb(i+1);
+          }
+    }
+    if(count&1) {cout<<-1; return 0;}
+    cout<<count/2<<"\n";
+    for(ll i=0;i<ar1.size();i+=2)
+    {
+        cout<<ar1[i]<<" "<<ar1[i+1]<<"\n";
+    }
+     for(ll i=0;i<ar2.size();i+=2)
+    {
+        cout<<ar2[i]<<" "<<ar2[i+1]<<"\n";
+    }
+    return 0;
 }
