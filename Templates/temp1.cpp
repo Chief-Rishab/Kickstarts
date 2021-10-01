@@ -32,6 +32,16 @@ ll logtwo(ll n){ if(n==1) return 0; return logtwo(n/2)+1;}
 ll isprime(ll n ){for(ll c1 = 2; c1*c1 <= n ;c1++){    if(n%c1 == 0){return 0;}} return 1;}
 ll twop(ll n) { ll x=0; while(n%2==0) {n/=2; x++;} return x;}
 
+struct hash_pair {
+    template <class T1, class T2>
+    size_t operator()(const pair<T1, T2>& p) const
+    {
+        auto hash1 = hash<T1>{}(p.first);
+        auto hash2 = hash<T2>{}(p.second);
+        return hash1 ^ hash2;
+    }
+};
+
 int t,n;main()
 {
     cin>>t;
