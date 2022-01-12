@@ -32,17 +32,11 @@ ll logtwo(ll n){ if(n==1) return 0; return logtwo(n/2)+1;}
 ll isprime(ll n ){for(ll c1 = 2; c1*c1 <= n ;c1++){    if(n%c1 == 0){return 0;}} return 1;}
 ll twop(ll n) { ll x=0; while(n%2==0) {n/=2; x++;} return x;}
 
-int main()
+ll n,k,y; main()
 {
-    int n,k;
-    //cout<<"Enter n\n";
-    cin>>n>>k;
-    vector <int> h(n),dp(n,0);
-    f(i,n) cin>>h[i];
-    for(int i=0;i<n;i++)
+    cin>>y>>k>>n;
+    for(ll i=k;i<=n;i+=k)
     {
-        for(int j=i+1;i<i+k;i++)
-             dp[j]=min(dp[j],abs(h[j]-h[i])+dp[i]);
+        if(i-y>0) {cout<<i-y<<" "; f=1;}
     }
-    cout<<dp[n-1];
 }

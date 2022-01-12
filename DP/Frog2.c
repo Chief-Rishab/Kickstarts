@@ -37,12 +37,19 @@ int main()
     int n,k;
     //cout<<"Enter n\n";
     cin>>n>>k;
-    vector <int> h(n),dp(n,0);
+    vector <int> h(n),dp(n,INT_MAX);
     f(i,n) cin>>h[i];
+    dp[0]=0;
     for(int i=0;i<n;i++)
     {
-        for(int j=i+1;i<i+k;i++)
-             dp[j]=min(dp[j],abs(h[j]-h[i])+dp[i]);
+        for(int j=i+1;j<=i+k;j++)
+             {
+                if(j<n)
+                {
+                    dp[j]=min(dp[j],abs(h[j]-h[i])+dp[i]);
+                    //trace1(dp[j]);
+                }
+             }
     }
     cout<<dp[n-1];
 }
